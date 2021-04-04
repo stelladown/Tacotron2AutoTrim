@@ -4,7 +4,7 @@ Auto trim and auto transcription of audio for using in the Tacotron 2 Google Col
 Usage
 1. Clone this repository
 
-        git clone https://github.com/gabcodedev/GoogleMeetSpamBot/
+        git clone https://github.com/gabcodedev/Tacotron2AutoTrim.git
 
 2. Run
    
