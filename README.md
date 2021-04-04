@@ -6,7 +6,7 @@ Usage
 
         git clone https://github.com/gabcodedev/Tacotron2AutoTrim.git
 
-2. Delete "anything.mp3" located in "input" folder and delete also "0.wav" located in "output/wavs" folder. 
+2. Replace "anything.mp3" located in "input" folder with your input audio file and delete "0.wav" located in "output/wavs" folder. 
 These empty files are added to the repository because git doesn't track empty folders.
 
 3. Run
