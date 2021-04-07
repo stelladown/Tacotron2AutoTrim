@@ -25,5 +25,5 @@ These empty files are added to the repository because git doesn't track empty fo
 For stopping the trimming and transcription at any time go to the active cmd terminal window and press Ctrl+C (This is only for Windows OS). Search in google for the equivalent shortcut in other OS.
 
 UPDATE VERSION 1.1:
-- Updated load.py file for skipping long duration files, and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated.
+- Updated load.py file for skipping long duration files (see bool skip_large_duration_files in load.py, it is set to True by default), and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated. 
 - You can change how long you would like the limit of duration (in seconds) to be in line 55 in the load.py file (Change the number, default is 12).
