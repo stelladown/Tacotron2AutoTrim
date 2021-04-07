@@ -7,7 +7,12 @@ from pydub.silence import split_on_silence
 import glob
 import os
 
+import wave
+import contextlib
+
 import transcribe
+
+skip_large_duration_files = True
 
 file_number = 1
 
@@ -39,19 +44,51 @@ for i, chunk in enumerate(audio_chunks):
 
     chunk.export(out_file, format="wav")
 
-    transcription = transcribe.get_large_audio_transcription(out_file)
+    fname = out_file
+    with contextlib.closing(wave.open(fname, 'r')) as f:
+        frames = f.getnframes()
+        rate = f.getframerate()
+        duration = frames / float(rate)
+        print('Duration:', duration)
 
-    if os.path.isfile('output/list.txt'):
-        if os.stat("output/list.txt").st_size != 0:
-            with open('output/list.txt', 'a+') as f:
-                f.write(f'\nwavs/{file_number}.wav|' + transcription)
-                f.flush()
+    if skip_large_duration_files:
+        if duration < 12:
+            transcription = transcribe.get_large_audio_transcription(out_file)
+
+            if transcription != '':
+                if os.path.isfile('output/list.txt'):
+                    if os.stat("output/list.txt").st_size != 0:
+                        with open('output/list.txt', 'a+') as f:
+                            f.write(f'\nwavs/{file_number}.wav|' + transcription)
+                            f.flush()
+                    else:
+                        with open('output/list.txt', 'a+') as f:
+                            f.write(f'wavs/{file_number}.wav|' + transcription)
+                            f.flush()
+                else:
+                    with open('output/list.txt', 'x') as f:
+                        f.write(f'wavs/{file_number}.wav|' + transcription)
+
+                file_number = file_number + 1
+            else:
+                os.remove(out_file)
         else:
-            with open('output/list.txt', 'a+') as f:
-                f.write(f'wavs/{file_number}.wav|' + transcription)
-                f.flush()
-    else:
-        with open('output/list.txt', 'x') as f:
-            f.write(f'wavs/{file_number}.wav|' + transcription)
+            os.remove(out_file)
 
-    file_number = file_number + 1
+    else:
+        transcription = transcribe.get_large_audio_transcription(out_file)
+
+        if os.path.isfile('output/list.txt'):
+            if os.stat("output/list.txt").st_size != 0:
+                with open('output/list.txt', 'a+') as f:
+                    f.write(f'\nwavs/{file_number}.wav|' + transcription)
+                    f.flush()
+            else:
+                with open('output/list.txt', 'a+') as f:
+                    f.write(f'wavs/{file_number}.wav|' + transcription)
+                    f.flush()
+        else:
+            with open('output/list.txt', 'x') as f:
+                f.write(f'wavs/{file_number}.wav|' + transcription)
+
+        file_number = file_number + 1
