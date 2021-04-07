@@ -3,7 +3,7 @@ Auto trim and auto transcription of audio for using in Tacotron 2
 
 
 UPDATE VERSION 1.1:
-- Switched to sphinx speech recognition
+- Switched to sphinx speech recognition.
 - Updated load.py file for skipping long duration files (see bool skip_large_duration_files in load.py, it is set to True by default), and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated. 
 - You can change how long you would like the limit of duration (in seconds) to be in line 55 in the load.py file (Change the number, default is 12).
 
