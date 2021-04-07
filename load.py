@@ -78,17 +78,20 @@ for i, chunk in enumerate(audio_chunks):
     else:
         transcription = transcribe.get_large_audio_transcription(out_file)
 
-        if os.path.isfile('output/list.txt'):
-            if os.stat("output/list.txt").st_size != 0:
-                with open('output/list.txt', 'a+') as f:
-                    f.write(f'\nwavs/{file_number}.wav|' + transcription)
-                    f.flush()
+        if transcription != '':
+            if os.path.isfile('output/list.txt'):
+                if os.stat("output/list.txt").st_size != 0:
+                    with open('output/list.txt', 'a+') as f:
+                        f.write(f'\nwavs/{file_number}.wav|' + transcription)
+                        f.flush()
+                else:
+                    with open('output/list.txt', 'a+') as f:
+                        f.write(f'wavs/{file_number}.wav|' + transcription)
+                        f.flush()
             else:
-                with open('output/list.txt', 'a+') as f:
+                with open('output/list.txt', 'x') as f:
                     f.write(f'wavs/{file_number}.wav|' + transcription)
-                    f.flush()
-        else:
-            with open('output/list.txt', 'x') as f:
-                f.write(f'wavs/{file_number}.wav|' + transcription)
 
-        file_number = file_number + 1
+            file_number = file_number + 1
+        else:
+            os.remove(out_file)
