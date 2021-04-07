@@ -26,3 +26,4 @@ For stopping the trimming and transcription at any time go to the active cmd ter
 
 UPDATE VERSION 1.1:
 - Updated load.py file for skipping long duration files, and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated.
+- You can change how long you would like the limit of duration to be in line 55 in the load.py file (Change the number, default is 12).
