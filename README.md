@@ -6,7 +6,7 @@ MAKE SURE YOU ARE USING VERSION 3.6.7 OF PYTHON,  OTHERWISE IT WILL NOT WORK. TH
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 UPDATE VERSION 1.2:
-- Updated transcription method (using deepspeech now it is almost 100% accurate). The models are only trained for english lenguage, you can search on the internet other pretrined models for other lenguages.
+- Updated transcription method (using deepspeech now it is almost 100% accurate). The models are only trained for english lenguage, you can search on the internet other pretrained models for other lenguages.
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
 
 IMPORTANT | HOW TO SETUP DEEPSPEECH
