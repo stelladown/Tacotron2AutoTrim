@@ -61,9 +61,9 @@ for i, chunk in enumerate(audio_chunks):
     if skip_large_duration_files:
         if duration < 12:
             if use_deepspeech:
-                model_file_path = 'deepspeech-0.9.3-models/deepspeech-0.9.3-models.pbmm'
+                model_file_path = 'deepspeech-models/deepspeech-0.9.3-models.pbmm'
 
-                scorer_file_path = 'deepspeech-0.9.3-models/deepspeech-0.9.3-models.scorer'
+                scorer_file_path = 'deepspeech-models/deepspeech-0.9.3-models.scorer'
 
                 os.chdir('deepspeech')
 
@@ -75,8 +75,8 @@ for i, chunk in enumerate(audio_chunks):
 
                 transcription = subprocess.check_output([
                     "deepspeech",
-                    '--model', "deepspeech-0.9.3-models/deepspeech-0.9.3-models.pbmm",
-                    "--scorer", "deepspeech-0.9.3-models/deepspeech-0.9.3-models.scorer",
+                    '--model', "deepspeech-models/deepspeech-0.9.3-models.pbmm",
+                    "--scorer", "deepspeech-models/deepspeech-0.9.3-models.scorer",
                     "--audio", out_file], shell=True)
 
                 print(transcription)
