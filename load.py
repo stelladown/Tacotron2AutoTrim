@@ -1,7 +1,6 @@
 import re
 import sys
 
-import numpy as np
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
@@ -14,8 +13,6 @@ import contextlib
 import transcribe
 
 import subprocess
-
-from subprocess import Popen, PIPE
 
 skip_large_duration_files = True
 
