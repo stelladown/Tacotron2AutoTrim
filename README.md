@@ -13,7 +13,7 @@ IMPORTANT | HOW TO SETUP DEEPSPEECH
 1. Download this folder from Google Drive as a zip and paste the folder into the project directory: https://drive.google.com/drive/folders/1V0adJO_36emvZeO-C5DjAIsQvL_3yUIh?usp=sharing.
 After downloading the folder open the file called "pyenv.cfg" with a notepad and change where it says "yourusername" to your computer username.
 
-2. Download Sox from here and add it to Path variable (this is for Windows, I don't know exactly how to do it in other OS): https://sourceforge.net/projects/sox/.
+2. Download Sox from here and add it to Path variable (this is for Windows, I don't know exactly what you have to do in other OS): https://sourceforge.net/projects/sox/.
 Then just add "C:\Program Files (x86)\sox-{The version that you downloaded here}" to Path variable.
 
 3. Download the deepspeech pretrained models (download the deepspeech-{the version here}-models.pbmm and also the deepspeech-{the version here}-models.scorer) from here: https://github.com/mozilla/DeepSpeech/releases.
