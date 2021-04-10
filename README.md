@@ -15,7 +15,8 @@ After downloading the folder open the file called "pyenv.cfg" with a notepad and
 Then just add "C:\Program Files (x86)\sox-{The version that you downloaded here}" to Path variable.
 
 3. Download the deepspeech pretrained models (download the deepspeech-{the version here}-models.pbmm and also the deepspeech-{the version here}-models.scorer) from here: https://github.com/mozilla/DeepSpeech/releases
-Then go to the folder called "deepspeech-models" and add the downloaded models.
+Then go to the folder called "deepspeech-models" and add the downloaded models. 
+Note: If the models get updated in Mozilla's DeepSpeech repository then you will need to change the name of the version of the models in the load.py file in lines 64, 66, 78 and 79. The current version is 0.9.3
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
