@@ -18,13 +18,13 @@ Then just add "C:\Program Files (x86)\sox-{The version that you downloaded here}
 
 3. Download the deepspeech pretrained models (download the deepspeech-{the version here}-models.pbmm and also the deepspeech-{the version here}-models.scorer) from here: https://github.com/mozilla/DeepSpeech/releases.
 Then go to the folder called "deepspeech-models" and add the downloaded models. 
-Note: If the models get updated in Mozilla's DeepSpeech repository then you will need to change the name of the version of the models in the load.py file in lines 64, 66, 78 and 79. The current version is 0.9.3
+Note: If the models get updated in Mozilla's DeepSpeech repository then you will need to change the name of the version of the models in the load.py file in lines 61, 63, 75 and 76. The current version is 0.9.3
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 UPDATE VERSION 1.1:
 - Updated load.py file for skipping long duration files (see bool skip_large_duration_files in load.py, it is set to True by default), and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated. 
-- You can change how long you would like the limit of duration (in seconds) to be in line 55 in the load.py file (Change the number, default is 12).
+- You can change how long you would like the limit of duration (in seconds) to be in line 59 in the load.py file (Change the number, default is 12).
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ These empty files are added to the repository because git doesn't track empty fo
         pip install -r requirements.txt
 
 
-4. If your audio trimmed files and transcription results are very long, you can change the "min_silence_len" parameter (line 20 in load.py file) according to your needs, so if you want the script to trim sentences when there is a minimum of 1 second you can change it to 1000, it's in 750 right now, so it will trim at 0.75 sec of silence. I found out that it works just fine at this value. You can also change the "silence_thresh" variable to other value to see if it works better in your case.
+4. If your audio trimmed files and transcription results are very long, you can change the "min_silence_len" parameter (line 17 in load.py file) according to your needs, so if you want the script to trim sentences when there is a minimum of 1 second you can change it to 1000, it's in 750 right now, so it will trim at 0.75 sec of silence. I found out that it works just fine at this value. You can also change the "silence_thresh" variable to other value to see if it works better in your case.
 
 5. Run
    
