@@ -3,6 +3,8 @@ Auto trim and auto transcription of audio for using in Tacotron 2
 
 MAKE SURE YOU ARE USING VERSION 3.6.7 OF PYTHON,  OTHERWISE IT WILL NOT WORK. THIS PROJECT WILL PROBABLY WORK ONLY ON WINDOWS OS BUT YOU CAN TRY IT ON OTHER OS IF YOU WANT.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 UPDATE VERSION 1.2:
 - Updated transcription method (using deepspeech now it is almost 100% accurate). The models are only trained for english lenguage, you can search on the internet other pretrined models for other lenguages.
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
