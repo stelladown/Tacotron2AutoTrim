@@ -1,5 +1,4 @@
 pydub~=0.25.1
 SpeechRecognition==3.8.1
-num2words==0.5.10
 numpy
 deepspeech
