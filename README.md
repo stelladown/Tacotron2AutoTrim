@@ -1,11 +1,29 @@
 # Tacotron2AutoTrim
 Auto trim and auto transcription of audio for using in Tacotron 2
 
+MAKE SURE YOU ARE USING VERSION 3.6.7 OF PYTHON,  OTHERWISE IT WILL NOT WORK. THIS PROJECT WILL PROBABLY WORK ONLY ON WINDOWS OS BUT YOU CAN TRY IT ON OTHER OS IF YOU WANT.
+
+UPDATE VERSION 1.2:
+- Updated transcription method (using deepspeech now it is almost 100% accurate). The models are only trained for english lenguage, you can search on the internet other pretrined models for lenguages.
+if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
+
+IMPORTANT | HOW TO SETUP DEEPSPEECH
+1. Download this folder from Google Drive as a zip and paste the folder into the project directory: https://drive.google.com/drive/folders/1V0adJO_36emvZeO-C5DjAIsQvL_3yUIh?usp=sharing
+After downloading the folder open the file called "pyenv.cfg" with a notepad and change where it says "yourusername" to your computer username.
+
+2. Download Sox from here and add it to Path variable (this is for Windows, I don't know exactly how to do it in other OS): https://sourceforge.net/projects/sox/
+Then just add "C:\Program Files (x86)\sox-{The version that you downloaded here}" to Path variable.
+
+3. Download the deepspeech pretrained models (download the deepspeech-{the version here}-models.pbmm and also the deepspeech-{the version here}-models.scorer) from here: https://github.com/mozilla/DeepSpeech/releases
+Then go to the folder called "deepspeech-models" and add the downloaded models.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 UPDATE VERSION 1.1:
 - Updated load.py file for skipping long duration files (see bool skip_large_duration_files in load.py, it is set to True by default), and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated. 
 - You can change how long you would like the limit of duration (in seconds) to be in line 55 in the load.py file (Change the number, default is 12).
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Usage
 1. Clone this repository
