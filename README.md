@@ -10,7 +10,7 @@ UPDATE VERSION 1.2:
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
 
 IMPORTANT | HOW TO SETUP DEEPSPEECH
-1. Download this folder from Google Drive as a zip and paste the folder into the project directory: https://drive.google.com/drive/folders/1V0adJO_36emvZeO-C5DjAIsQvL_3yUIh?usp=sharing.
+1. Download this folder from Google Drive and paste the folder into the project directory: https://drive.google.com/drive/folders/1V0adJO_36emvZeO-C5DjAIsQvL_3yUIh?usp=sharing.
 After downloading the folder open the file called "pyenv.cfg" with a notepad and change where it says "yourusername" to your computer username.
 
 2. Download Sox from here and add it to Path variable (this is for Windows, I don't know exactly what you have to do in other OS): https://sourceforge.net/projects/sox/.
