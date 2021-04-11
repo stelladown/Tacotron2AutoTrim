@@ -10,7 +10,9 @@ UPDATE VERSION 1.2:
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
 
 IMPORTANT | HOW TO SETUP DEEPSPEECH
-1. Create a folder called deepspeech and cd into that folder, then run this command: python -m venv .
+1. Create a folder called deepspeech and cd into that folder, then run this command: 
+                                           
+       python -m venv .
 
  The dot at the end is very important (it tells to python to create a virtual enviroment in that folder).
 
