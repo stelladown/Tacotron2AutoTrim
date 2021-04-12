@@ -26,14 +26,9 @@ These empty files are added to the repository because git doesn't track empty fo
 3. Install requirements.
    
         pip install -r requirements.txt
-
-
-4. If your audio trimmed files and transcription results are very long, you can change the "min_silence_len" parameter (line 17 in load.py file) according to your needs, so if you want the script to trim sentences when there is a minimum of 1 second you can change it to 1000, it's in 750 right now, so it will trim at 0.75 sec of silence. I found out that it works just fine at this value. You can also change the "silence_thresh" variable to other value to see if it works better in your case.
-
-5. Run
+        
+4. Run
    
         python load.py yourfile.mp3  
 
 (many audio extensions are supported)
-
-For stopping the trimming and transcription at any time go to the active cmd terminal window and press Ctrl+C (This is only for Windows OS). Search in google for the equivalent shortcut in other OS.
