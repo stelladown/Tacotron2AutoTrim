@@ -80,7 +80,7 @@ for i, chunk in enumerate(audio_chunks):
             else:
                 transcription = transcribe.get_large_audio_transcription(out_file)
 
-            if transcription != '':
+            if transcription != '' and transcription != None:
                 if os.path.isfile('output/list.txt'):
                     if os.stat("output/list.txt").st_size != 0:
                         with open('output/list.txt', 'a+') as f:
@@ -103,7 +103,7 @@ for i, chunk in enumerate(audio_chunks):
     else:
         transcription = transcribe.get_large_audio_transcription(out_file)
 
-        if transcription != '':
+        if transcription != '' and transcription != None:
             if os.path.isfile('output/list.txt'):
                 if os.stat("output/list.txt").st_size != 0:
                     with open('output/list.txt', 'a+') as f:
