@@ -2,21 +2,11 @@ import re
 import sys
 
 from pydub import AudioSegment
-from pydub.silence import split_on_silence
 
 import glob
 import os
 
-import wave
-import contextlib
-
-import transcribe
-
-import subprocess
-
-skip_large_duration_files = True
-
-use_deepspeech = True
+from youtube_transcript_api import YouTubeTranscriptApi
 
 file_number = 1
 
@@ -26,97 +16,55 @@ input_file = 'input/' + sys.argv[1]
 sound_file = AudioSegment.from_file(input_file)
 sound_file = sound_file.set_frame_rate(22050)  # don't change this
 sound_file = sound_file.set_channels(1)  # don't change this
-audio_chunks = split_on_silence(sound_file, min_silence_len=500,  # 1000 cuts at 1 second of silence. 500 is 0.5 sec
-                                silence_thresh=-40)
 
-for i, chunk in enumerate(audio_chunks):
+if len(os.listdir('output/wavs')) == 0:
+    print("Wavs directory is empty")
+else:
+    list_of_files = glob.glob('output/wavs/*')  # * means all
+    latest_file = max(list_of_files, key=os.path.getctime)
 
-    if len(os.listdir('output/wavs')) == 0:
-        print("Wavs directory is empty")
-    else:
-        list_of_files = glob.glob('output/wavs/*')  # * means all
-        latest_file = max(list_of_files, key=os.path.getctime)
+    # Extract numbers and cast them to int
+    list_of_nums = re.findall('\\d+', latest_file)
 
-        # Extract numbers and cast them to int
-        list_of_nums = re.findall('\\d+', latest_file)
+    if int(list_of_nums[0]) >= file_number:
+        file_number = int(list_of_nums[0]) + 1
 
-        if int(list_of_nums[0]) >= file_number:
-            file_number = int(list_of_nums[0]) + 1
+srt = YouTubeTranscriptApi.get_transcript("xB48HrmE62w")
 
-    out_file = "output/wavs/{0}.wav".format(file_number)
-    print("exporting", out_file)
+transcription = srt
 
-    chunk.export(out_file, format="wav")
+num_of_sentences = str(transcription).count("'text':")
 
-    fname = out_file
-    with contextlib.closing(wave.open(fname, 'r')) as f:
-        frames = f.getnframes()
-        rate = f.getframerate()
-        duration = frames / float(rate)
-        print('Duration:', duration)
+for sentence in range(num_of_sentences):
+    if transcription[file_number]['text'] != '' or transcription[file_number]['text'] is not None:
+        start_sec = transcription[file_number]['start']
 
-    if skip_large_duration_files:
-        if duration < 12:
-            if use_deepspeech:
-                model_file_path = 'deepspeech-models/deepspeech-0.9.3-models.pbmm'
+        duration_sec = transcription[file_number + 1]['start']
 
-                scorer_file_path = 'deepspeech-models/deepspeech-0.9.3-models.scorer'
+        difference_time = duration_sec - start_sec
 
-                os.chdir('deepspeech')
+        end_sec = start_sec + difference_time
 
-                subprocess.call(
-                    "Scripts\\activate",
-                    shell=True)
+        # Time to miliseconds
+        startTime = start_sec * 1000
+        endTime = end_sec * 1000
 
-                os.chdir('../')
+        extract = sound_file[startTime:endTime]
 
-                transcription = subprocess.check_output([
-                    "deepspeech",
-                    '--model', "deepspeech-models/deepspeech-0.9.3-models.pbmm",
-                    "--scorer", "deepspeech-models/deepspeech-0.9.3-models.scorer",
-                    "--audio", out_file], shell=True)
+        # Saving
+        extract.export('output/wavs/' + str(file_number) + '.wav', format="wav")
 
-                print(transcription)
+        if os.path.isfile('output/list.txt'):
+            if os.stat("output/list.txt").st_size != 0:
+                with open('output/list.txt', 'a+') as f:
+                    f.write(f'\nwavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
+                    f.flush()
             else:
-                transcription = transcribe.get_large_audio_transcription(out_file)
-
-            if transcription != '' and transcription is not None:
-                if os.path.isfile('output/list.txt'):
-                    if os.stat("output/list.txt").st_size != 0:
-                        with open('output/list.txt', 'a+') as f:
-                            f.write(f'\nwavs/{file_number}.wav|' + transcription.decode('utf-8').capitalize().strip()+'.')
-                            f.flush()
-                    else:
-                        with open('output/list.txt', 'a+') as f:
-                            f.write(f'wavs/{file_number}.wav|' + transcription.decode('utf-8').capitalize().strip()+'.')
-                            f.flush()
-                else:
-                    with open('output/list.txt', 'x') as f:
-                        f.write(f'wavs/{file_number}.wav|' + transcription.decode('utf-8').capitalize().strip()+'.')
-
-                file_number = file_number + 1
-            else:
-                os.remove(out_file)
+                with open('output/list.txt', 'a+') as f:
+                    f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
+                    f.flush()
         else:
-            os.remove(out_file)
+            with open('output/list.txt', 'x') as f:
+                f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
 
-    else:
-        transcription = transcribe.get_large_audio_transcription(out_file)
-
-        if transcription != '' and transcription is not None:
-            if os.path.isfile('output/list.txt'):
-                if os.stat("output/list.txt").st_size != 0:
-                    with open('output/list.txt', 'a+') as f:
-                        f.write(f'\nwavs/{file_number}.wav|' + transcription)
-                        f.flush()
-                else:
-                    with open('output/list.txt', 'a+') as f:
-                        f.write(f'wavs/{file_number}.wav|' + transcription)
-                        f.flush()
-            else:
-                with open('output/list.txt', 'x') as f:
-                    f.write(f'wavs/{file_number}.wav|' + transcription)
-
-            file_number = file_number + 1
-        else:
-            os.remove(out_file)
+        file_number = file_number + 1
