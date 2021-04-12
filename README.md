@@ -13,6 +13,8 @@ Steps for using the YouTube Transcript api are:
   3. Copy the id of the video | Example: if your youtube video url is this one: https://youtu.be/VDiyQub6vpw (just an example) You have to take this part => VDiyQub6vpw
   4. After you copy the id of your video go into the file called "load.py" and change where it says "yourid" in line 32 and put the id of your video inside the apostrophes.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 UPDATE VERSION 1.2:
 - Updated transcription method (using deepspeech now it is around 85% accurate). The models are only trained for english lenguage, you can search on the internet other pretrained models for other lenguages.
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
