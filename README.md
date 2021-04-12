@@ -1,12 +1,20 @@
 # Tacotron2AutoTrim
 Auto trim and auto transcription of audio for using in Tacotron 2
 
-MAKE SURE YOU ARE USING VERSION 3.6.7 OF PYTHON,  OTHERWISE IT WILL NOT WORK. THIS PROJECT WILL PROBABLY WORK ONLY ON WINDOWS OS BUT YOU CAN TRY IT ON OTHER OS IF YOU WANT.
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+UPDATE VERSION 1.3:
+ - Thanks to the suggestion of user DogBeef on YouTube: https://www.youtube.com/channel/UC1TUqfutiChlw_A0lIkYvVw
+ Tacotron2AutoTrim now uses YouTube Transcript Api for the transcription method (+99% accuracy).
+ 
+Steps for using the YouTube Transcript api are:
+  1. Convert your audio to video (if you dont have a video editor you can search in google "mp3 to mp4 converter online").
+  2. Upload the converted video to YouTube.
+  3. Copy the id of the video | Example: if your youtube video url is this one: https://youtu.be/VDiyQub6vpw (just an example) You have to take this part => VDiyQub6vpw
+  4. After you copy the id of your video go into the file called "load.py" and change where it says "yourid" in line 32 and put the id of your video inside the apostrophes.
+
 UPDATE VERSION 1.2:
-- Updated transcription method (using deepspeech now it is almost 100% accurate). The models are only trained for english lenguage, you can search on the internet other pretrained models for other lenguages.
+- Updated transcription method (using deepspeech now it is around 85% accurate). The models are only trained for english lenguage, you can search on the internet other pretrained models for other lenguages.
 if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
 
 IMPORTANT | HOW TO SETUP DEEPSPEECH
