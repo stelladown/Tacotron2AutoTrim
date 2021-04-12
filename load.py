@@ -29,7 +29,7 @@ else:
     if int(list_of_nums[0]) >= file_number:
         file_number = int(list_of_nums[0]) + 1
 
-srt = YouTubeTranscriptApi.get_transcript("yourid")
+srt = YouTubeTranscriptApi.get_transcript("yourvideoid")
 
 transcription = srt
 
