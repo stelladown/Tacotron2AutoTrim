@@ -15,32 +15,6 @@ Steps for using the YouTube Transcript api are:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-UPDATE VERSION 1.2:
-- Updated transcription method (using deepspeech now it is around 85% accurate). The models are only trained for english lenguage, you can search on the internet other pretrained models for other lenguages.
-if you don't want to use deepspeech for any reason (It is recommended to use it) you can change the bool called "use_deepspeech" to False in load.py and it will use the old method (google free speech recognition).
-
-IMPORTANT | HOW TO SETUP DEEPSPEECH
-1. Create a folder called deepspeech and cd into that folder, then run this command: 
-                                           
-       python -m venv .
-
- The dot at the end is very important (it tells to python to create a virtual enviroment in that folder).
-
-2. Download Sox from here and add it to Path variable (this is for Windows, I don't know exactly what you have to do in other OS): https://sourceforge.net/projects/sox/.
-Then just add "C:\Program Files (x86)\sox-{The version that you downloaded here}" to Path variable.
-
-3. Download the deepspeech pretrained models (download the deepspeech-{the version here}-models.pbmm and also the deepspeech-{the version here}-models.scorer) from here: https://github.com/mozilla/DeepSpeech/releases.
-Then go to the folder called "deepspeech-models" and add the downloaded models. 
-Note: If the models get updated in Mozilla's DeepSpeech repository then you will need to change the name of the version of the models in the load.py file in lines 61, 63, 75 and 76. The current version is 0.9.3
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-UPDATE VERSION 1.1:
-- Updated load.py file for skipping long duration files (see bool skip_large_duration_files in load.py, it is set to True by default), and also added funcionality for skipping non transcribed sentences, so you don't have to correct anything manually,         all is automated. 
-- You can change how long you would like the limit of duration (in seconds) to be in line 59 in the load.py file (Change the number, default is 12).
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Usage
 1. Clone this repository
 
