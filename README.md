@@ -9,7 +9,7 @@ UPDATE VERSION 1.3:
  
 Steps for using the YouTube Transcript api are:
   1. Convert your audio to video (if you dont have a video editor you can search in google "mp3 to mp4 converter online").
-  2. Upload the converted video to YouTube.
+  2. Upload the converted video to YouTube (it has to be either a public video or you can also upload it in hidden mode).
   3. Copy the id of the video | Example: if your youtube video url is this one: https://youtu.be/VDiyQub6vpw (just an example) You have to take this part => VDiyQub6vpw
   4. After you copy the id of your video go into the file called "load.py" and change where it says "yourvideoid" in line 32 and put the id of your video inside the apostrophes.
 
