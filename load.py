@@ -29,14 +29,14 @@ else:
     if int(list_of_nums[0]) >= file_number:
         file_number = int(list_of_nums[0]) + 1
 
-srt = YouTubeTranscriptApi.get_transcript("yourvideoid")
+srt = YouTubeTranscriptApi.get_transcript("VDiyQub6vpw")
 
 transcription = srt
 
 num_of_sentences = str(transcription).count("'text':")
 
 for sentence in range(num_of_sentences):
-    if transcription[file_number]['text'] != '' or transcription[file_number]['text'] is not None:
+    if transcription[file_number]['text'].strip() != '' or transcription[file_number]['text'] is not None:
         start_sec = transcription[file_number]['start']
 
         duration_sec = transcription[file_number + 1]['start']
@@ -56,15 +56,15 @@ for sentence in range(num_of_sentences):
 
         if os.path.isfile('output/list.txt'):
             if os.stat("output/list.txt").st_size != 0:
-                with open('output/list.txt', 'a+') as f:
-                    f.write(f'\nwavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
+                with open('output/list.txt', 'a+', encoding="utf-8") as f:
+                    f.write(f'\nwavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip().replace("\n", " ") + '.')
                     f.flush()
             else:
-                with open('output/list.txt', 'a+') as f:
-                    f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
+                with open('output/list.txt', 'a+', encoding="utf-8") as f:
+                    f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip().replace("\n", " ") + '.')
                     f.flush()
         else:
-            with open('output/list.txt', 'x') as f:
-                f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip() + '.')
+            with open('output/list.txt', 'x', encoding="utf-8") as f:
+                f.write(f'wavs/{file_number}.wav|' + transcription[file_number]['text'].capitalize().strip().replace("\n", " ") + '.')
 
         file_number = file_number + 1
