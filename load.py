@@ -27,7 +27,7 @@ os.makedirs(os.path.dirname('output/wavs/'), exist_ok=True)
 sound_file = AudioSegment.from_file(input_file)
 sound_file = sound_file.set_frame_rate(22050)  # don't change this
 sound_file = sound_file.set_channels(1)  # don't change this
-audio_chunks = split_on_silence(sound_file, min_silence_len=750,  # 1000 cuts at 1 second of silence. 500 is 0.5 sec
+audio_chunks = split_on_silence(sound_file, min_silence_len=500,  # 1000 cuts at 1 second of silence. 500 is 0.5 sec
                                 silence_thresh=-40)
 
 for i, chunk in enumerate(audio_chunks):
