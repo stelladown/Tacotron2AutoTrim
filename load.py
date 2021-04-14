@@ -19,6 +19,11 @@ file_number = 1
 # assign files
 input_file = 'input/' + sys.argv[1]
 
+# create dir if doesn't exist
+os.makedirs(os.path.dirname('input/'), exist_ok=True)
+os.makedirs(os.path.dirname('output/'), exist_ok=True)
+os.makedirs(os.path.dirname('output/wavs/'), exist_ok=True)
+
 sound_file = AudioSegment.from_file(input_file)
 sound_file = sound_file.set_frame_rate(22050)  # don't change this
 sound_file = sound_file.set_channels(1)  # don't change this
