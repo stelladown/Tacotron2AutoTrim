@@ -12,8 +12,6 @@ import youtube_dl
 
 file_number = 1
 
-punctuation = '''!()-[]{};:'"\, <>./?@#$%^&*_~'''
-
 youtube_video_link = input('Link of the video you want to use: ')
 
 if youtube_video_link.count('?v=') > 0:
