@@ -20,6 +20,6 @@ Usage
         
 4. Run
    
-        python load.py youtubevideolink  
+        python load.py  
 
 (replace "youtubevideolink" by the link of the video you want to use)
