@@ -60,13 +60,14 @@ num_of_sentences = str(transcription).count("'text':")
 
 for sentence in range(num_of_sentences):
     if transcription[sentence]['text'].strip() != '' or transcription[sentence]['text'] is not None:
+        print(transcription)
         start_sec = transcription[sentence]['start']
 
-        end_sec = transcription[sentence]['start'] + transcription[sentence]['duration']
+        end_sec = transcription[sentence + 1]['start']
 
         # Time to miliseconds
-        startTime = math.trunc(start_sec) * 1000
-        endTime = math.trunc(end_sec) * 1000
+        startTime = math.trunc(start_sec * 1000)
+        endTime = math.ceil(end_sec * 1000)
 
         extract = sound_file[startTime:endTime]
 
