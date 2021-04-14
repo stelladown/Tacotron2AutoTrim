@@ -60,7 +60,6 @@ num_of_sentences = str(transcription).count("'text':")
 
 for sentence in range(num_of_sentences):
     if transcription[sentence]['text'].strip() != '' or transcription[sentence]['text'] is not None:
-        print(transcription)
         start_sec = transcription[sentence]['start']
 
         end_sec = transcription[sentence + 1]['start']
