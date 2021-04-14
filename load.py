@@ -1,6 +1,5 @@
 import math
 import re
-import sys
 
 from pydub import AudioSegment
 
@@ -15,7 +14,7 @@ file_number = 1
 
 punctuation = '''!()-[]{};:'"\, <>./?@#$%^&*_~'''
 
-youtube_video_link = sys.argv[1]
+youtube_video_link = input('Link of the video you want to use: ')
 
 if youtube_video_link.count('?v=') > 0:
     youtube_id = youtube_video_link.split('?v=')[1] # don't change this
