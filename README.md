@@ -1,4 +1,5 @@
-Tacotron2AutoTrim
+# Tacotron2AutoTrim
+
 Auto trim and auto transcription of audio for using in Tacotron 2
 
 UPDATE VERSION 1.1:
