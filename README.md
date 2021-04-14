@@ -13,7 +13,7 @@ Usage
 
        git clone https://github.com/gabcodedev/Tacotron2AutoTrim.git
     
-Once the repository is cloned into your computer, replace "anything.mp3" located in "input" folder with your input audio files and delete "0.wav" located in "output/wavs" folder. These empty files are added to the repository because git doesn't track empty folders.
+Once the repository is cloned into your computer, replace "anything.mp3" located in "input" folder with your input audio files.
 
 2. Install requirements.
 
