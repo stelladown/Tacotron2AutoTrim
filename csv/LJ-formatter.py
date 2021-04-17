@@ -2,8 +2,6 @@ import re
 import os
 import num2words
 
-directory = 'wavs'
-
 file = open('list.txt')
 
 lineslist = []
