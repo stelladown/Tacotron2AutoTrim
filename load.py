@@ -16,8 +16,10 @@ skip_large_duration_files = True
 
 file_number = 1
 
+input_file = input('Enter the name of the input file (include extension): ')
+
 # assign files
-input_file = 'input/' + sys.argv[1]
+input_file = 'input/' + input_file
 
 # create dir if doesn't exist
 os.makedirs(os.path.dirname('input/'), exist_ok=True)
@@ -32,9 +34,7 @@ audio_chunks = split_on_silence(sound_file, min_silence_len=500,  # 1000 cuts at
 
 for i, chunk in enumerate(audio_chunks):
 
-    if len(os.listdir('output/wavs')) == 0:
-        print("Wavs directory is empty")
-    else:
+    if not len(os.listdir('output/wavs')) == 0:
         list_of_files = glob.glob('output/wavs/*')  # * means all
         latest_file = max(list_of_files, key=os.path.getctime)
 
