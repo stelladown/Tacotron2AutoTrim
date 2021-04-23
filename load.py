@@ -1,5 +1,4 @@
 import re
-import sys
 
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
@@ -17,6 +16,28 @@ skip_large_duration_files = True
 file_number = 1
 
 input_file = input('Enter the name of the input file (include extension): ')
+
+lang = ''
+
+print('\nSUPPORTED LENGUAGES: English, Spanish, French, German, Italian, Japanese, Russian, Arabic')
+lang_input = input('What lenguage is spoken in your input audio?: ')
+
+if lang_input.strip().lower() == 'english':
+    lang = 'en-US'
+elif lang_input.strip().lower() == 'spanish':
+    lang = 'es-ES'
+elif lang_input.strip().lower() == 'french':
+    lang = 'fr-FR'
+elif lang_input.strip().lower() == 'german':
+    lang = 'de-DE'
+elif lang_input.strip().lower() == 'italian':
+    lang = 'it-IT'
+elif lang_input.strip().lower() == 'japanese':
+    lang = 'ja'
+elif lang_input.strip().lower() == 'russian':
+    lang = 'ru'
+elif lang_input.strip().lower() == 'arabic':
+    lang = 'ar-EG'
 
 # assign files
 input_file = 'input/' + input_file
@@ -58,7 +79,7 @@ for i, chunk in enumerate(audio_chunks):
 
     if skip_large_duration_files:
         if duration < 12:
-            transcription = transcribe.get_large_audio_transcription(out_file)
+            transcription = transcribe.get_large_audio_transcription(out_file, lang)
 
             if transcription != '':
                 if os.path.isfile('output/list.txt'):
@@ -81,7 +102,7 @@ for i, chunk in enumerate(audio_chunks):
             os.remove(out_file)
 
     else:
-        transcription = transcribe.get_large_audio_transcription(out_file)
+        transcription = transcribe.get_large_audio_transcription(out_file, lang)
 
         if transcription != '':
             if os.path.isfile('output/list.txt'):
