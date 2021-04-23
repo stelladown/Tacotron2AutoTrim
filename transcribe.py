@@ -10,7 +10,7 @@ r = sr.Recognizer()
 
 # a function that splits the audio file into chunks
 # and applies speech recognition
-def get_large_audio_transcription(path):
+def get_large_audio_transcription(path, lang):
     """
     Splitting the large audio file into chunks
     and apply speech recognition on each of these chunks
@@ -42,7 +42,7 @@ def get_large_audio_transcription(path):
             audio_listened = r.record(source)
             # try converting it to text
             try:
-                text = r.recognize_google(audio_listened)
+                text = r.recognize_google(audio_listened, language=lang)
             except sr.UnknownValueError as e:
                 print("Error:", str(e))
             else:
